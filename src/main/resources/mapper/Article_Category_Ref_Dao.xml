@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="dao.Article_Category_Ref_Dao">
+    	<select id="get_Article_Category_Ref_ByArticleId" parameterType="int" resultType="entity.Article_Category_Ref">
+    		select * from article_category_ref where article_id = #{article_id}
+    	</select>
+    	<select id="get_Article_Category_Ref_ByCategoryId" parameterType="int" resultType="entity.Article_Category_Ref">
+    		select * from article_category_ref where category_id = #{category_id}
+    	</select>
+    	<delete id="delete_Article_Category_RefByArticleId" parameterType="int">
+    		delete from article_category_ref where article_id = #{article_id}
+    	</delete>
+    	<insert id="insert_Article_Category_Ref">
+    		insert into article_category_ref values(null,#{article_id},#{category_id})
+    	</insert>
+    </mapper>

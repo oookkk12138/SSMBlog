@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="dao.LinkDao">
+    	<select id="getAllLink" resultType="entity.Link">
+    		select * from link order by link_status asc,link_order desc,link_id asc
+    	</select>
+    	<select id="getLinkCount" resultType="int">
+    		select count(*) from link
+    	</select>
+    	<insert id="insertLink" parameterType="entity.Link">
+    		insert into link values(null,#{link_url},#{link_name},#{link_description},#{link_owner_contact},#{link_update_time},#{link_create_time},#{link_order},#{link_status})
+    	</insert>
+    	<select id="getAllLinkByStatus" parameterType="int" resultType="entity.Link">
+    		select * from link where link_status = #{link_status}
+    	</select>
+    	<select id="getLinkById" parameterType="int" resultType="entity.Link">
+    		select * from link where link_id = #{link_id}
+    	</select>
+    	<update id="updateLink" parameterType="entity.Link">
+    		update link
+    		<set>
+    			<if test="link_url != null and link_url !=''">
+    				link_url = #{link_url},
+    			</if>
+    			<if test="link_name != null and link_name !=''">
+    				link_name = #{link_name},
+    			</if>
+    			<if test="link_description != null and link_description !=''">
+    				link_description = #{link_description},
+    			</if>
+    			<if test="link_owner_contact != null and link_owner_contact !=''">
+    				link_owner_contact = #{link_owner_contact},
+    			</if>
+    			<if test="link_update_time != null">
+    				link_update_time = #{link_update_time},
+    			</if>
+    			<if test="link_create_time != null">
+    				link_create_time = #{link_create_time},
+    			</if>
+    			<if test="link_order != null">
+    				link_order = #{link_order},
+    			</if>
+    			<if test="link_status != null">
+    				link_status = #{link_status},
+    			</if>
+    		</set>
+    		where link_id = #{link_id}
+    	</update>
+    	<delete id="deleteLinkById" parameterType="int">
+    		delete from link where link_id = #{link_id}
+    	</delete>
+    </mapper>

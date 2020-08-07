@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="dao.OptionDao">
+    	<select id="getOptionFirst" resultType="entity.Option">
+    		select * from option_ where option_id = 1
+    	</select>
+    	<update id="updateOption" parameterType="entity.Option">
+    		update option_
+    		<set>
+    			<if test="option_site_url != null and option_site_url != ''">
+    				option_site_url = #{option_site_url},
+    			</if>
+    			<if test="option_site_title != null and option_site_title != ''">
+    				option_site_title = #{option_site_title},
+    			</if>
+    			<if test="option_site_description != null and option_site_description != ''">
+    				option_site_description = #{option_site_description},
+    			</if>
+    			<if test="option_meta_description != null and option_meta_description != ''">
+    				option_meta_description = #{option_meta_description},
+    			</if>
+    			<if test="option_meta_keyword != null and option_meta_keyword != ''">
+    				option_meta_keyword = #{option_meta_keyword},
+    			</if>
+    			<if test="option_aboutsite_avator != null and option_aboutsite_avator != ''">
+    				option_aboutsite_avator = #{option_aboutsite_avator},
+    			</if>
+    			<if test="option_aboutsite_title != null and option_aboutsite_title != ''">
+    				option_aboutsite_title = #{option_aboutsite_title},
+    			</if>
+    			<if test="option_aboutsite_content != null and option_aboutsite_content != ''">
+    				option_aboutsite_content = #{option_aboutsite_content},
+    			</if>
+    			<if test="option_aboutsite_wechat != null and option_aboutsite_wechat != ''">
+    				option_aboutsite_wechat = #{option_aboutsite_wechat},
+    			</if>
+    			<if test="option_aboutsite_qq != null and option_aboutsite_qq != ''">
+    				option_aboutsite_qq = #{option_aboutsite_qq},
+    			</if>
+    			<if test="option_aboutsite_github != null and option_aboutsite_github != ''">
+    				option_aboutsite_github = #{option_aboutsite_github},
+    			</if>
+    			<if test="option_aboutsite_weibo != null and option_aboutsite_weibo != ''">
+    				option_aboutsite_weibo = #{option_aboutsite_weibo},
+    			</if>
+    		</set>
+    		where option_id = #{option_id}
+    	</update>
+    </mapper>

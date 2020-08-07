@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="dao.PageDao">
+    	<select id="getAllPage" resultType="entity.Page">
+    		select * from page
+    	</select>
+    	<select id="getPageById" parameterType="int" resultType="entity.Page">
+    		select * from page where page_id = #{page_id}
+    	</select>
+    	<update id="updatePage" parameterType="entity.Page">
+    		update page
+    		<set>
+    			<if test="page_key != null and page_key != ''">
+    				page_key = #{page_key},
+    			</if>
+    			<if test="page_title != null and page_title != ''">
+    				page_title = #{page_title},
+    			</if>
+    			<if test="page_content != null and page_content != ''">
+    				page_content = #{page_content},
+    			</if>
+    			<if test="page_create_time != null">
+    				page_create_time = #{page_create_time},
+    			</if>
+    			<if test="page_update_time != null">
+    				page_update_time = #{page_update_time},
+    			</if>
+    			<if test="page_view_count != null">
+    				page_view_count = #{page_view_count},
+    			</if>
+    			<if test="page_comment_count != null">
+    				page_comment_count = #{page_comment_count},
+    			</if>
+    			<if test="page_status != null">
+    				page_status = #{page_status},
+    			</if>
+    		</set>
+    		where page_id = #{page_id}
+    	</update>
+    	<delete id="deletePageById" parameterType="int">
+    		delete from page where page_id = #{page_id}
+    	</delete>
+    	<insert id="insertPage" parameterType="entity.Page">
+    		insert into page values(null,#{page_key},#{page_title},#{page_content},#{page_create_time},#{page_update_time},#{page_view_count},#{page_comment_count},#{page_status})
+    	</insert>
+    </mapper>

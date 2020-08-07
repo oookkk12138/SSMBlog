@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="dao.CommentDao">
+    	<select id="getAllCommentDesc" resultType="entity.Comment">
+    		select * from comment order by comment_id desc
+    	</select>
+    	<select id="getCommentCount" resultType="int">
+    		select count(*) from comment
+    	</select>
+    	<select id="getCommentByArticleId" parameterType="int" resultType="entity.Comment">
+    		select * from comment where comment_article_id = #{article_id}
+    	</select>
+    	<delete id="deleteCommentById" parameterType="int">
+    		delete from comment where comment_id = #{comment_id}
+    	</delete>
+    	<insert id="insertComment" parameterType="entity.Comment">
+    		insert into comment values(null,#{comment_article_id},#{comment_author_name},#{comment_author_email},#{comment_author_url},#{comment_author_avator},#{comment_content},#{comment_ip},#{comment_create_time},#{comment_role})
+    	</insert>
+    	<select id="getCommentById" parameterType="int" resultType="entity.Comment">
+    		select * from comment where comment_id = #{comment_id}
+    	</select>
+    	<update id="updateComment" parameterType="entity.Comment">
+    		update comment
+    		<set>
+    			<if test="comment_article_id != null">
+    				comment_article_id = #{comment_article_id},
+    			</if>
+    			<if test="comment_author_name != null and comment_author_name != ''">
+    				comment_author_name = #{comment_author_name},
+    			</if>
+    			<if test="comment_author_email != null and comment_author_email != ''">
+    				comment_author_email = #{comment_author_email},
+    			</if>
+    			<if test="comment_author_url != null and comment_author_url != ''">
+    				comment_author_url = #{comment_author_url},
+    			</if>
+    			<if test="comment_author_avator != null and comment_author_avator != ''">
+    				comment_author_avator = #{comment_author_avator},
+    			</if>
+    			<if test="comment_content != null and comment_content != ''">
+    				comment_content = #{comment_content},
+    			</if>
+    			<if test="comment_ip != null and comment_ip != ''">
+    				comment_ip = #{comment_ip},
+    			</if>
+    			<if test="comment_create_time != null">
+    				comment_create_time = #{comment_create_time},
+    			</if>
+    			<if test="comment_role != null">
+    				comment_role = #{comment_role},
+    			</if>
+    		</set>
+    		where comment_id = #{comment_id}
+    	</update>
+    </mapper>

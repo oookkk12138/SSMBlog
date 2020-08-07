@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+    <mapper namespace="dao.TagDao">
+    	<select id="getAllTag" resultType="entity.Tag">
+    		select * from tag
+    	</select>
+    	<select id="getTagById" parameterType="int" resultType="entity.Tag">
+    		select * from tag where tag_id = #{tag_id}
+    	</select>
+    	<select id="getTagCount" resultType="int">
+    		select count(*) from tag
+    	</select>
+    	<insert id="insertTag" parameterType="entity.Tag">
+    		insert into tag values(null,#{tag_name},#{tag_description})
+    	</insert>
+    	<delete id="deleteTagById" parameterType="int">
+    		delete from tag where tag_id = #{tag_id}
+    	</delete>
+    	<update id="updateTag" parameterType="entity.Tag">
+    		update tag set tag_name = #{tag_name},tag_description = #{tag_description} where tag_id = #{tag_id}
+    	</update>
+    </mapper>

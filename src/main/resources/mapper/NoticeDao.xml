@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="dao.NoticeDao">
+    	<select id="getAllNotice" resultType="entity.Notice">
+    		select * from notice order by notice_order desc
+    	</select>
+    	<select id="getNoticeById" parameterType="int" resultType="entity.Notice">
+    		select * from notice where notice_id = #{id}
+    	</select>
+    	<insert id="insertNotice" parameterType="entity.Notice">
+    		insert into notice values(null,#{notice_title},#{notice_content},#{notice_create_time},#{notice_update_time},#{notice_status},#{notice_order})
+    	</insert>
+    	<update id="updateNotice" parameterType="entity.Notice">
+    		update notice
+    		<set>
+    			<if test="notice_title != null and notice_title != ''">
+    				notice_title = #{notice_title},
+    			</if>
+    			<if test="notice_content != null and notice_content != ''">
+    				notice_content = #{notice_content},
+    			</if>
+    			<if test="notice_create_time != null">
+    				notice_create_time = #{notice_create_time},
+    			</if>
+    			<if test="notice_update_time != null">
+    				notice_update_time = #{notice_update_time},
+    			</if>
+    			<if test="notice_status != null">
+    				notice_status = #{notice_status},
+    			</if>
+    			<if test="notice_order != null">
+    				notice_order = #{notice_order},
+    			</if>
+    		</set>
+    		where notice_id = #{notice_id}
+    	</update>
+    	<delete id="deleteNoticeById" parameterType="int">
+    		delete from notice where notice_id = #{notice_id}
+    	</delete>
+    </mapper>
